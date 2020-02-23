@@ -11,6 +11,10 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+    - port: {{ .Values.service_ws.port }}
+      targetPort: ws
+      protocol: TCP
+      name: ws
   selector:
     app.kubernetes.io/name: {{ include "elastalert.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
