@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: servercentral/elastalert
-  tag: latest
+  repository: daichi703n/elastalert
+  tag: 0.2.1-dev
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
