@@ -80,7 +80,6 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: {{ template "elastalert.fullname" . }}
-            name: {{ template "elastalert.fullname" . }}
         - name: config
           configMap:
             name: {{ template "elastalert.fullname" . }}-config
