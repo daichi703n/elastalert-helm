@@ -23,6 +23,17 @@ spec:
       serviceAccountName: {{ template "elastalert.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: volume-mount-hack
+          image: busybox
+          command: ["sh", "-c", "chmod -R 777 /opt/elastalert/rules; chmod -R 777 /opt/elastalert/rule_templates"]
+          volumeMounts:
+          - name: data
+            mountPath: '/opt/elastalert/rules'
+            subPath: rules
+          - name: data
+            mountPath: '/opt/elastalert/rule_templates'
+            subPath: rule_templates
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
