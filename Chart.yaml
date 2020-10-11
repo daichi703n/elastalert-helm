@@ -2,4 +2,4 @@ apiVersion: v1
 appVersion: "0.2.1-dev"
 description: ElastAlert Helm chart for Kubernetes
 name: elastalert
-version: 0.1.2
+version: 0.1.3
