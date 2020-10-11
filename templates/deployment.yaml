@@ -26,8 +26,11 @@ spec:
       initContainers:
         - name: volume-mount-hack
           image: busybox
-          command: ["sh", "-c", "chmod -R 777 /opt/elastalert/rules; chmod -R 777 /opt/elastalert/rule_templates"]
+          command: ["sh", "-c", "cp /opt/elastalert/ruleset/* /opt/elastalert/rules/; chmod -R 777 /opt/elastalert/rules; chmod -R 777 /opt/elastalert/rule_templates;"]
           volumeMounts:
+          - name: rules
+            mountPath: '/opt/elastalert/ruleset'
+            # subPath: ruleset
           - name: data
             mountPath: '/opt/elastalert/rules'
             subPath: rules
@@ -109,3 +112,12 @@ spec:
             items:
             - key: elastalert_api_config
               path: config.json
+        - name: rules
+          configMap:
+            name: {{ template "elastalert.fullname" . }}-rules
+            items:
+{{- range $key, $value := .Values.rules }}
+            - key: {{ $key }}
+              path: {{ $key }}.yaml
+              mode: 0777
+{{- end }}
