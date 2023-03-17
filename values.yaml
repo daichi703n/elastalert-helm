@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: daichi703n/elastalert
-  tag: 0.2.1-dev
+  repository: praecoapp/elastalert-server
+  tag: 20230219
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
@@ -134,3 +134,7 @@ realertIntervalMins: ""
 #
 # CAUTION: It is recommended to set this to `elastalert` for ES6+. Otherwise elastalert produces confusing index names due to https://github.com/Yelp/elastalert/issues/1479#issuecomment-356380179
 writebackIndex: elastalert_status
+
+metrics:
+  enabled: false
+  port: 9979
