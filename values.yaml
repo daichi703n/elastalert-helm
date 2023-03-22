@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: praecoapp/elastalert-server
-  tag: 20230219
+  tag: "20230219" # use quotes if tag contains no string
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
