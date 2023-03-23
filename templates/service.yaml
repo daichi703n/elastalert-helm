@@ -15,6 +15,12 @@ spec:
       targetPort: ws
       protocol: TCP
       name: ws
+    {{- if .Values.metrics.enabled }}
+    - port: {{ .Values.metrics.port | default 9979 }}
+      targetPort: metrics
+      protocol: TCP
+      name: metrics
+    {{- end }}
   selector:
     app.kubernetes.io/name: {{ include "elastalert.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
