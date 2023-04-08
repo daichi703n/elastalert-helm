@@ -1,6 +1,6 @@
 #Ref: https://github.com/helm/charts/blob/master/stable/elastalert/templates/config.yaml
 apiVersion: v1
-kind: ConfigMap
+kind: Secret
 metadata:
   name: {{ template "elastalert.fullname" . }}-config
   labels:
@@ -8,7 +8,7 @@ metadata:
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-data:
+stringData:
   elastalert_config: |-
     ---
     rules_folder: /opt/elastalert/rules
