@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: v2
 appVersion: "20230219"
 description: ElastAlert Helm chart for Kubernetes
 name: elastalert

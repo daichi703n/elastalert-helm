@@ -41,6 +41,18 @@ service_ws:
   type: ClusterIP
   port: 3333
 
+metrics:
+  enabled: true
+  port: 9979
+  serviceMonitor:
+    enabled: true
+    namespace: prometheus
+    interval: 15s
+    scrapeTimeout: 1m
+    scheme: http
+  prometheusRule:
+    enabled: true
+
 ingress:
   enabled: false
   annotations:
@@ -138,15 +150,3 @@ realertIntervalMins: ""
 #
 # CAUTION: It is recommended to set this to `elastalert` for ES6+. Otherwise elastalert produces confusing index names due to https://github.com/Yelp/elastalert/issues/1479#issuecomment-356380179
 writebackIndex: elastalert_status
-
-metrics:
-  enabled: true
-  port: 9979
-  serviceMonitor:
-    enabled: true
-    namespace: prometheus
-    interval: 15s
-    scrapeTimeout: 1m
-    scheme: http
-  prometheusRule:
-    enabled: true
