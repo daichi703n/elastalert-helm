@@ -4,6 +4,11 @@
 
 replicaCount: 1
 
+# Deployment update strategy. Defaults to Recreate: the chart mounts a
+# ReadWriteOnce PVC on a single replica, so RollingUpdate cannot attach the
+# volume to the new pod while the old one holds it (Multi-Attach error).
+updateStrategy: Recreate
+
 image:
   repository: praecoapp/elastalert-server
   tag: "20230219" # use quotes if tag contains no string

@@ -6,6 +6,8 @@ metadata:
 {{ include "elastalert.labels" . | indent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  strategy:
+    type: {{ .Values.updateStrategy | default "Recreate" }}
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "elastalert.name" . }}
